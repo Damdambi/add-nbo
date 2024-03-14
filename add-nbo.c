@@ -9,8 +9,10 @@ int main(int argc, char* argv[])
     for(int i=0; i<2; i++)
     {
         result += Four_BYTE(argv[i+1]);
+        if(i==0) printf(" + ");
     }
-    printf("%x\n",result);
+    printf(" = ");
+    printf("%d(0x%x)\n",result,result);
 }
 
 int Four_BYTE(char* filename)
@@ -31,6 +33,7 @@ int Four_BYTE(char* filename)
         check = fread(&data, sizeof(char), 4, fp);
         if(check==4){
             fclose(fp);
+            printf("%d(0x%x)",ntohl(data),ntohl(data));
             return ntohl(data);
         }
         else{
